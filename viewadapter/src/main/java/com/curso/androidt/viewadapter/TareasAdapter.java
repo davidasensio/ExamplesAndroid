@@ -47,22 +47,24 @@ public class TareasAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View resultView = layoutInflater.inflate(resLayout, parent, false);
+        if (convertView == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(resLayout, parent, false);
+        }
 
         Tarea item = getDatos().get(position);
 
-        TextView txtTitulo = (TextView) resultView.findViewById(R.id.txtTitulo);
-        TextView txtDescripcion = (TextView) resultView.findViewById(R.id.txtDescripcion);
-        TextView txtPrioridad = (TextView) resultView.findViewById(R.id.txtPrioridad);
-        TextView txtFecha = (TextView) resultView.findViewById(R.id.txtFecha);
+        TextView txtTitulo = (TextView) convertView.findViewById(R.id.txtTitulo);
+        TextView txtDescripcion = (TextView) convertView.findViewById(R.id.txtDescripcion);
+        TextView txtPrioridad = (TextView) convertView.findViewById(R.id.txtPrioridad);
+        TextView txtFecha = (TextView) convertView.findViewById(R.id.txtFecha);
 
         txtTitulo.setText(item.getTitulo());
         txtDescripcion.setText(item.getDescripcion());
         txtPrioridad.setText(item.getPrioridad());
         txtFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(item.getFecha()));
 
-        return resultView;
+        return convertView;
     }
 
     public List<Tarea> getDatos() {
