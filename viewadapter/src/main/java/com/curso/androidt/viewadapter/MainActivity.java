@@ -21,6 +21,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //FIXME: Sustituir esto por el listadapter de Tareas
         ListView listTareas = (ListView) findViewById(R.id.tareasListView);
 
         String[] datos = new String[]{"Comer", "Dormir", "..."};
