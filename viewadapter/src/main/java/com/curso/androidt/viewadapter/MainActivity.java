@@ -23,8 +23,8 @@ public class MainActivity extends Activity {
 
         ListView listTareas = (ListView) findViewById(R.id.tareasListView);
 
-        String[] datos = new String[] {"Comer", "Dormir", "..."};
-            ListAdapter la = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,datos);
+        String[] datos = new String[]{"Comer", "Dormir", "..."};
+        ListAdapter la = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos);
         listTareas.setAdapter(la);
     }
 

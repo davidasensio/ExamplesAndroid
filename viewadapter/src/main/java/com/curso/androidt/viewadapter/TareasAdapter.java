@@ -1,9 +1,16 @@
 package com.curso.androidt.viewadapter;
 
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +21,14 @@ public class TareasAdapter extends BaseAdapter {
 
 
     private List<Tarea> datos;
+    private int resLayout;
+    private Context context;
+
+    public TareasAdapter(List<Tarea> datos, int resLayout, Context context) {
+        this.datos = datos;
+        this.resLayout = resLayout;
+        this.context = context;
+    }
 
     @Override
     public int getCount() {
@@ -32,7 +47,22 @@ public class TareasAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View resultView = layoutInflater.inflate(resLayout, parent, false);
+
+        Tarea item = getDatos().get(position);
+
+        TextView txtTitulo = (TextView) resultView.findViewById(R.id.txtTitulo);
+        TextView txtDescripcion = (TextView) resultView.findViewById(R.id.txtDescripcion);
+        TextView txtPrioridad = (TextView) resultView.findViewById(R.id.txtPrioridad);
+        TextView txtFecha = (TextView) resultView.findViewById(R.id.txtFecha);
+
+        txtTitulo.setText(item.getTitulo());
+        txtDescripcion.setText(item.getDescripcion());
+        txtPrioridad.setText(item.getPrioridad());
+        txtFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(item.getFecha()));
+
+        return resultView;
     }
 
     public List<Tarea> getDatos() {
