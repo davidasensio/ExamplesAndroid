@@ -1,32 +1,30 @@
-package com.curso.androidt.viewadapter;
+package com.curso.androidt.contextmenu;
 
 import android.app.Activity;
-import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 
 public class MainActivity extends Activity {
+    ListView listViewTareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listViewTareas = (ListView) findViewById(R.id.tareasListView);
+        listViewTareas = (ListView) findViewById(R.id.tareasListView);
 
         //String[] version
         //String[] datos = new String[]{"Comer", "Dormir", "..."};
@@ -39,10 +37,12 @@ public class MainActivity extends Activity {
         listTareas.add(new Tarea("Tarea 3", "Esta es la tarea 3", 30, new Date()));
         listTareas.add(new Tarea("Tarea 4", "Esta es la tarea 4", 40, new Date()));
 
-        ListAdapter listTareaAdapter = new TareasAdapter(listTareas,R.layout.tarea_list_item,this);
+        ListAdapter listTareaAdapter = new TareasAdapter(listTareas, R.layout.tarea_list_item, this);
 
 
         listViewTareas.setAdapter(listTareaAdapter);
+
+        registerForContextMenu(listViewTareas);
     }
 
     @Override
@@ -65,5 +65,40 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Context Menu
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if (v.getId() == R.id.tareasListView) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            int position = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
+            //Con listViewTareas como atributo de clase ya es necesaria esta linea
+            //Tarea tarea = (Tarea) ((AdapterView) v).getAdapter().getItem(position);
+            Tarea tarea = (Tarea)listViewTareas.getAdapter().getItem(position);
+
+            menu.setHeaderIcon(android.R.drawable.btn_star);
+            menu.setHeaderTitle(tarea.getTitulo());
+
+
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_settings:
+                int position = ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position;
+                //Con listViewTareas como atributo de clase ya es necesaria esta linea
+                //Tarea tarea = (Tarea)((AdapterView)item.getActionView()).getAdapter().getItem(position);
+                Tarea tarea = (Tarea)listViewTareas.getAdapter().getItem(position);
+                Toast.makeText(this, "Item pulsado " + tarea.getTitulo(), Toast.LENGTH_LONG).show();
+                return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }

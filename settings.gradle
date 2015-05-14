@@ -1,1 +1,1 @@
-include ':app', ':viewadapter'
+include ':app', ':viewadapter', ':contextmenu'
