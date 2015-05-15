@@ -8,4 +8,10 @@
         android:text="Este es el listado"
         android:id="@+id/txtFragmentListado" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewTareas"
+        android:layout_gravity="left|top" />
+
 </FrameLayout>
