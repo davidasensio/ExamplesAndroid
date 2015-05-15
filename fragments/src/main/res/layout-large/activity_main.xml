@@ -3,4 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.curso.androidt.fragments.ListadoFragment"
+        android:id="@+id/fragment2"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.5" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.curso.androidt.fragments.DetalleFragment"
+        android:id="@+id/fragment3"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.5" />
 </LinearLayout>

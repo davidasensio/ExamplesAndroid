@@ -1,26 +1,23 @@
 package com.curso.androidt.fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class DetalleActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_detalle);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_detalle, menu);
         return true;
     }
 
@@ -37,19 +34,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        //Discriminar si estamos en SmartPhone o en Tablet
-        Fragment fragmentDetalle = getFragmentManager().findFragmentById(R.id.fragmentDetalle1);
-
-        if (fragmentDetalle != null) {
-
-        }else {
-            Intent intent = new Intent(this, DetalleActivity.class);
-            startActivity(intent);
-        }
-
     }
 }
