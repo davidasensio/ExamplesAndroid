@@ -1,11 +1,12 @@
 package com.curso.androidt.fragments;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by androidt on 13/05/2015.
 */
-public class Tarea {
+public class Tarea implements Serializable {
     private String titulo;
     private String descripcion;
     private int prioridad;

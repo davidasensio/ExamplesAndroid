@@ -1,11 +1,31 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.curso.androidt.fragments.DetalleFragment">
+    tools:context="com.curso.androidt.fragments.DetalleFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Este es el detalle"
-        android:id="@+id/txtFragmentDetalle" />
+    <TextView
+        android:id="@+id/txtFragmentTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtFragmentDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txtFragmentPrioridad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/txtFragmentFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

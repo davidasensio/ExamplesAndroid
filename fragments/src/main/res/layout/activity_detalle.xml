@@ -6,16 +6,13 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.curso.androidt.fragments.DetalleActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.curso.androidt.fragments.DetalleFragment"
         android:id="@+id/fragmentDetalle1"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textView2" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

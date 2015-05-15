@@ -52,13 +52,10 @@ public class TareasAdapter extends BaseAdapter {
 
         TextView txtTitulo = (TextView) convertView.findViewById(R.id.txtTitulo);
         TextView txtDescripcion = (TextView) convertView.findViewById(R.id.txtDescripcion);
-        TextView txtPrioridad = (TextView) convertView.findViewById(R.id.txtPrioridad);
-        TextView txtFecha = (TextView) convertView.findViewById(R.id.txtFecha);
+
 
         txtTitulo.setText(item.getTitulo());
         txtDescripcion.setText(item.getDescripcion());
-        txtPrioridad.setText(String.valueOf(item.getPrioridad()));
-        txtFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(item.getFecha()));
 
         return convertView;
     }
