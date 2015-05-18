@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference android:key="frecuenciasActualizacion"
+        android:entries="@array/frecuencias_entries"
+        android:entryValues="@array/frecuencias_entries_values"
+        android:title="Frecuencias de Actualizacion"
+        android:summary="Establezca cada cuanto tiempo se ha actualizar la base de datos"
+        android:dialogTitle="Frecuencias de actualización">
+
+    </ListPreference>
+
+
+
+    </PreferenceScreen>

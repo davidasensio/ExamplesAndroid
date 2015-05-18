@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">ContextMenu</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+
 </resources>

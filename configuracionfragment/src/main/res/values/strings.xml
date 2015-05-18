@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ConfiguracionFragment</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <array name="frecuencias_entries">
+        <item>Ninguna</item>
+        <item>Cada hora</item>
+        <item>Cada dia</item>
+        <item>Cada semana</item>
+    </array>
+
+    <array name="frecuencias_entries_values">
+        <item>0</item>
+        <item>1</item>
+        <item>24</item>
+        <item>168</item>
+    </array>
+
+    <string name="title_activity_preferences">PreferencesActivity</string>
+</resources>
