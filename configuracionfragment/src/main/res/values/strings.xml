@@ -7,19 +7,21 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <array name="frecuencias_entries">
+
+
+    <string-array name="frecuencias_entries">
         <item>Ninguna</item>
         <item>Cada hora</item>
         <item>Cada dia</item>
         <item>Cada semana</item>
-    </array>
+    </string-array>
 
-    <array name="frecuencias_entries_values">
+    <string-array name="frecuencias_entries_values">
         <item>0</item>
         <item>1</item>
         <item>24</item>
         <item>168</item>
-    </array>
+    </string-array>
 
     <string name="title_activity_preferences">PreferencesActivity</string>
 </resources>

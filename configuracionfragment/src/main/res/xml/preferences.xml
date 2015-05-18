@@ -10,6 +10,14 @@
 
     </ListPreference>
 
+    <EditTextPreference android:key="urlFeed"
+        android:title="Url rss"
+        android:summary="La url del feed"
+        android:defaultValue="http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.atom"
+        >
+
+    </EditTextPreference>
+
 
 
     </PreferenceScreen>

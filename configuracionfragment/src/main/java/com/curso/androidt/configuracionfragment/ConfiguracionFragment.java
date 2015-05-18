@@ -21,10 +21,7 @@ public class ConfiguracionFragment extends PreferenceFragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return null;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
