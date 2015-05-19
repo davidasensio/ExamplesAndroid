@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Quake implements Serializable {
 
-    private Long id;
+    private String id;
     private String title;
     private String link;
     private Float magnitude;
@@ -31,11 +31,12 @@ public class Quake implements Serializable {
 
     //Getters & Setters
 
-    public Long getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -98,6 +99,6 @@ public class Quake implements Serializable {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        return result.append(String.valueOf(id)).append(" - ").append(title).append(" - ").append(String.valueOf(magnitude)).append(" - ").append(link).toString();
+        return result.append(String.valueOf(id)).append(" - ").append(title).append(" - ").append(String.valueOf(magnitude)).append(" - ").append(link).append(" - ").append("[" + latitude + ", " + longitude + "]").toString();
     }
 }

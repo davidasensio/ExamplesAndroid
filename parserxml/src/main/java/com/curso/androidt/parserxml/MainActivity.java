@@ -1,9 +1,12 @@
 package com.curso.androidt.parserxml;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +15,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ListView listView = (ListView) findViewById(R.id.listViewQuakes);
+        ArrayAdapter<Quake> quakeArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        listView.setAdapter(quakeArrayAdapter);
+
+        DownloadXmlQuakes downloadXmlQuakes = new DownloadXmlQuakes(listView, new ProgressDialog(this));
+        downloadXmlQuakes.execute(DownloadXmlQuakes.URL_QUAKES);
     }
 
     @Override
