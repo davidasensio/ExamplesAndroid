@@ -1,36 +1,26 @@
-package com.curso.androidt.dialogos;
+package com.curso.androidt.asynctask;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.ImageView;
 
 
 public class MainActivity extends Activity {
-
-    DialogoFragment dialogoFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Deprecated (Por acoplamiento del dialogo a la actividad). A partir del API de fragmentos, los dialogs se hacen con fragmentos
-        //showDialog(1);
-
-        dialogoFragment = new DialogoFragment();
-        dialogoFragment.setNegativeButtonListener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(MainActivity.this, "Se pulsó el No", Toast.LENGTH_LONG).show();
-            }
-        });
+        ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        DescargaImagen descargaImagen = new DescargaImagen(imageView, new ProgressDialog(this));
+        // descargaImagen.doInBackground(DescargaImagen.URL_PRUEBA_1); Esto da error por que se ejecuta en el hilo principal
+        descargaImagen.execute(DescargaImagen.URL_PRUEBA_1);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,19 +38,9 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-            dialogoFragment.show(getFragmentManager(), "miDialogo");
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    //Deprecated
-    /*
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        return super.onCreateDialog(id);
-    }
-    */
 }
