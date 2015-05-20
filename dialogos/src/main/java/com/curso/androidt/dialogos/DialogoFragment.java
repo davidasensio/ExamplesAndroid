@@ -35,11 +35,11 @@ public class DialogoFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("¿Desea continuar?");
+        builder.setMessage("Desea continuar?");
 //        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
 //            @Override
 //            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getActivity(), "Se pulsó el No", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(), "Se pulsï¿½ el No", Toast.LENGTH_LONG).show();
 //            }
 //        });
 
@@ -47,7 +47,7 @@ public class DialogoFragment extends DialogFragment {
         builder.setNegativeButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity(), "Se pulsó el Si", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Se pulsï¿½ el Si", Toast.LENGTH_LONG).show();
             }
         });
         return builder.create();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="script_create_terremotos">
+        <item>CREATE TABLE [TERREMOTOS] ([id] INTEGER  NOT NULL PRIMARY KEY,[TITULO] VARCHAR(100)  NULL,[LINK] VARCHAR(2000)  NULL,[FECHA] TIMESTAMP  NULL,[MAGNITUD] FLOAT  NULL,[LATITUD] FLOAT  NULL,[LONGITUD] FLOAT  NULL)</item>
+    </string-array>
+
+    <string-array name="script_create_terremotos_upgrade_v2">
+        <item>alter table terremoto add column link varchar2 ;</item>
+    </string-array>
+
+    <string-array name="script_create_terremotos_upgrade_v3">
+        <item>alter table terremoto add column extra varchar2 ;</item>
+    </string-array>
+</resources>
