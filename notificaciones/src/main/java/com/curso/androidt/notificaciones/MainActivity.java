@@ -3,6 +3,9 @@ package com.curso.androidt.notificaciones;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,16 +36,21 @@ public class MainActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
-            Notification.Builder builder= new Notification.Builder(this);
+            Notification.Builder builder = new Notification.Builder(this);
 
+            Intent intent = new Intent(this, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
             builder.setSmallIcon(android.R.drawable.ic_dialog_info)
                     .setTicker("Nueva notificacion") //Texto que se muestra y desaparece en la barra
                     .setContentInfo("content info")
-                    .setVibrate(new long[] {1,3,1,3}) //vibracion 1 seg suena, 3 seg para, 1 seg suena...
+                    .setVibrate(new long[]{1, 3, 1, 3}) //vibracion 1 seg suena, 3 seg para, 1 seg suena...
                     .setContentTitle("Titulo")
                     .setContentText("Cuerpo de la notificacion")
-                    .setAutoCancel(true) //Se quita cuando le pinchas
-                    //.setContentIntent(pendingIntent)
+                    .setAutoCancel(false) //Se quita cuando le pinchas
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_btn_speak_now))
+                    .setContentIntent(pendingIntent)
+            .setProgress(100,0,false)
+                //.addPerson()  //Muestra un contacto
             ;
             Notification notification = builder.build();
 
