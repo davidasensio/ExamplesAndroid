@@ -1,13 +1,11 @@
-package com.curso.androidt.basededatos;
+package com.curso.androidt.notificaciones;
 
 import android.app.Activity;
-import android.database.sqlite.SQLiteDatabase;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import java.util.Date;
 
 
 public class MainActivity extends Activity {
@@ -16,24 +14,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        TerremotosSQLiteOpenHelper helperDB = new TerremotosSQLiteOpenHelper(this,"TerremotosDB", null, getResources().getInteger(R.integer.database_version));
-        SQLiteDatabase db = helperDB.getWritableDatabase();
-        TerremotoDaoImpl terremotoDao = new TerremotoDaoImpl(db);
-
-        Terremoto terremoto = new Terremoto(
-                "Uno",
-                "Terrmoto 1",
-                "",
-                5.5f,
-                new Date(),
-                33.5f,
-                0.12f
-        );
-        terremotoDao.insertar(terremoto);
-
-        Terremoto uno = terremotoDao.consultar("Uno");
-        Toast.makeText(this, uno.toString(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -52,6 +32,24 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            Notification.Builder builder= new Notification.Builder(this);
+
+            builder.setSmallIcon(android.R.drawable.ic_dialog_info)
+                    .setTicker("Nueva notificacion") //Texto que se muestra y desaparece en la barra
+                    .setContentInfo("content info")
+                    .setVibrate(new long[] {1,3,1,3}) //vibracion 1 seg suena, 3 seg para, 1 seg suena...
+                    .setContentTitle("Titulo")
+                    .setContentText("Cuerpo de la notificacion")
+                    .setAutoCancel(true) //Se quita cuando le pinchas
+                    //.setContentIntent(pendingIntent)
+            ;
+            Notification notification = builder.build();
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(1, notification);
+
+
             return true;
         }
 

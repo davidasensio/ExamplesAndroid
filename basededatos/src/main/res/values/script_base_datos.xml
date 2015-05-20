@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- ################################### -->
+    <!-- ####### NO OLVIDAR CAMBIAR ######## -->
+    <!-- ################################### -->
+    <integer name="database_version">1</integer>
+    <!-- ################################### -->
+    <!-- ################################### -->
+    <!-- ################################### -->
+
     <string-array name="script_create_terremotos">
         <item>CREATE TABLE [TERREMOTOS] ([id] INTEGER  NOT NULL PRIMARY KEY,[TITULO] VARCHAR(100)  NULL,[LINK] VARCHAR(2000)  NULL,[FECHA] TIMESTAMP  NULL,[MAGNITUD] FLOAT  NULL,[LATITUD] FLOAT  NULL,[LONGITUD] FLOAT  NULL)</item>
     </string-array>

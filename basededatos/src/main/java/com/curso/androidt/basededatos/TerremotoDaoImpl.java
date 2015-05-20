@@ -4,8 +4,10 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -34,18 +36,17 @@ public class TerremotoDaoImpl implements Dao<String, Terremoto>, TerremotoDao {
     }
 
 
-
     @Override
     public void borrar(Terremoto entidad) {
         String whereClause = CAMPO_ID + " = ?";
-        String[] whereArgs = new String []{entidad.getId()};
+        String[] whereArgs = new String[]{entidad.getId()};
         db.delete(TABLA, whereClause, whereArgs);
     }
 
     @Override
     public void update(Terremoto entidad) {
         String whereClause = CAMPO_ID + " = ?";
-        String[] whereArgs = new String []{entidad.getId()};
+        String[] whereArgs = new String[]{entidad.getId()};
         db.update(TABLA, terremotoToContentValues(entidad), whereClause, whereArgs);
     }
 
@@ -53,10 +54,10 @@ public class TerremotoDaoImpl implements Dao<String, Terremoto>, TerremotoDao {
     public Terremoto consultar(String id) {
         String[] columns = null; //Si null -> todas las columnas
         String whereClause = CAMPO_ID + " = ?";
-        String[] whereArgs = new String [] {id};
+        String[] whereArgs = new String[]{id};
 
         Cursor cursor = db.query(TABLA, columns, whereClause, whereArgs, null, null, null);
-        return  cursorToTerremotos(cursor).get(0);
+        return cursorToTerremotos(cursor).get(0);
     }
 
     @Override
@@ -72,14 +73,29 @@ public class TerremotoDaoImpl implements Dao<String, Terremoto>, TerremotoDao {
     public List<Terremoto> consultar(Float magnitud, Date fecha) {
         String[] columns = null; //Si null -> todas las columnas
         String whereClause = CAMPO_MAGNITUD + " >= ? AND FECHA >= Date(?)";
-        String[] whereArgs = new String [] {String.valueOf(magnitud), dateToString(fecha)};
+        String[] whereArgs = new String[]{String.valueOf(magnitud), dateToString(fecha)};
 
         Cursor cursor = db.query(TABLA, columns, whereClause, whereArgs, null, null, null);
-        return  cursorToTerremotos(cursor);
+        return cursorToTerremotos(cursor);
     }
 
     private List<Terremoto> cursorToTerremotos(Cursor cursor) {
-        return null;
+        LinkedList<Terremoto> result = new LinkedList<>();
+        if (cursor.moveToFirst()) {
+            do {
+                Terremoto terremoto = new Terremoto(
+                        cursor.getString(cursor.getColumnIndex(CAMPO_ID)),
+                        cursor.getString(cursor.getColumnIndex(CAMPO_TITULO)),
+                        cursor.getString(cursor.getColumnIndex(CAMPO_LINK)),
+                        cursor.getFloat(cursor.getColumnIndex(CAMPO_MAGNITUD)),
+                        stringToDate(cursor.getString(cursor.getColumnIndex(CAMPO_FECHA))),
+                        cursor.getFloat(cursor.getColumnIndex(CAMPO_LATITUD)),
+                        cursor.getFloat(cursor.getColumnIndex(CAMPO_LONGITUD))
+                );
+                result.add(terremoto);
+            } while (cursor.moveToNext());
+        }
+        return result;
     }
 
     private ContentValues terremotoToContentValues(Terremoto entidad) {
@@ -87,7 +103,7 @@ public class TerremotoDaoImpl implements Dao<String, Terremoto>, TerremotoDao {
         contentValues.put(CAMPO_ID, entidad.getId());
         contentValues.put(CAMPO_TITULO, entidad.getTitle());
         contentValues.put(CAMPO_LINK, entidad.getLink());
-        contentValues.put(CAMPO_FECHA, dateToString(entidad.getDate()) );
+        contentValues.put(CAMPO_FECHA, dateToString(entidad.getDate()));
         contentValues.put(CAMPO_MAGNITUD, entidad.getMagnitude());
         contentValues.put(CAMPO_LATITUD, entidad.getLatitude());
         contentValues.put(CAMPO_LONGITUD, entidad.getLongitude());
@@ -97,5 +113,14 @@ public class TerremotoDaoImpl implements Dao<String, Terremoto>, TerremotoDao {
 
     private String dateToString(Date fecha) {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(fecha);
+    }
+
+    private Date stringToDate(String fecha) {
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

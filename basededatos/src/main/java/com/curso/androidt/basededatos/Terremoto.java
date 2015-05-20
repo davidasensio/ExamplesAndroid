@@ -20,7 +20,8 @@ public class Terremoto implements Serializable {
     public Terremoto() {
     }
 
-    public Terremoto(String title, String link, Float magnitude, Date date, Float longitude, Float latitude) {
+    public Terremoto(String id, String title, String link, Float magnitude, Date date, Float longitude, Float latitude) {
+        this.id = id;
         this.title = title;
         this.link = link;
         this.magnitude = magnitude;
